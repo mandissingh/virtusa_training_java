@@ -1,0 +1,72 @@
+
+public class Date {
+	private int year;	// year ranging from 1000 to 9999
+	private int month;	// month ranging from 1 to 12	
+	private int day;	// day ranging from 1 to 31
+	
+	// Parameterized constructor to set initial values of data members
+	public Date(int day, int month, int year) throws InvalidDateException{
+		this.setYear(year);
+		this.setMonth(month);
+		this.setDay(day);
+	}
+	
+	// setDate function to set or change data members
+	public void setDate(int day, int month, int year) throws InvalidDateException{	
+		this.setYear(year);
+		this.setMonth(month);
+		this.setDay(day);
+	}
+	
+	// Overriding toString function to return date in "DD/MM/YYYY" format
+	public String toString(){
+		return String.format("%02d" +"/" + "%02d" + "/" + "%04d",day,month,year); 
+	}
+	
+	// Getter function for day
+	public int getDay() {
+		return this.day;
+	}
+
+	// Setter function for day with exception handled if day range is invalid
+	public void setDay(int day) throws InvalidDateException {
+		if(day > 31 || day < 1) throw new InvalidDateException("Invalid date");
+		this.day = day;
+	}
+
+	// Getter function for year
+	public int getYear() {
+		return this.year;
+	}
+
+	// Setter function for year with exception handled if year range is invalid
+	public void setYear(int year) throws InvalidDateException {
+		if(year > 9999 || year < 1000) throw new InvalidDateException("Invalid Year");
+		this.year = year;
+	}
+
+	// Getter function for month
+	public int getMonth() {
+		return this.month;
+	}
+
+	// Setter function for month with exception handled if month range is invalid
+	public void setMonth(int month) throws InvalidDateException {
+		if(month > 12 || month < 1) throw new InvalidDateException("Invalid Month");
+		this.month = month;
+	}
+	
+	// Main Function
+	public static void main(String[] args) throws InvalidDateException {
+		Date d = new Date(0,8,9999);
+		System.out.println(d.toString());
+	}
+
+}
+
+// Custom Exception for invalid day, month and year range
+class InvalidDateException extends Exception{
+	public InvalidDateException(String message){
+	super(message);
+	}
+}

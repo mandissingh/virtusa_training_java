@@ -1,0 +1,91 @@
+
+public class Time {
+
+	private int second; // second ranging from 0 to 23
+	private int minute; // minute ranging from 0 to 59
+	private int hour; // hour ranging from 0 to 59
+	
+	public Time(){}
+	
+	public Time(int second, int minute, int hour) throws InvalidDateException{
+		this.setSecond(second);
+		this.setMinute(minute);
+		this.setHour(hour);
+	}
+	
+	// setTime function to set time
+	public void setTime(int second, int minute, int hour) throws InvalidDateException{
+		this.setSecond(second);
+		this.setMinute(minute);
+		this.setHour(hour);
+	}
+	
+	// Overriding toString function to get time in "hh:mm:ss" format
+	public String toString(){
+		return String.format("%02d"+ ":" + "%02d" + ":" + "%02d", hour,minute,second);
+	}
+	
+	// nextSecond method to increment time
+	public void nextSecond(){
+		this.second++;
+			if(second > 59){
+				second = 0;
+				minute ++;
+				if(minute > 59){
+					minute = 0;
+					hour ++;
+					if(hour > 23){
+						hour = 0;
+					}	
+			}
+		}
+			this.toString();
+	}
+	
+	// Getter function for second
+	public int getSecond() {
+		return second;
+	}
+	
+	// Setter function for second with exception handled if second range is invalid
+	public void setSecond(int second) throws InvalidDateException {
+		if(second < 0 || second > 59) throw new InvalidDateException("Invalid seconds");
+		this.second = second;
+	}
+
+	// Getter function for minute
+	public int getMinute() {
+		return minute;
+	}
+
+	// Setter function for minute with exception handled if minute range is invalid
+	public void setMinute(int minute) throws InvalidDateException {
+		if(minute < 0 || minute > 59) throw new InvalidDateException("Invalid minute");
+		this.minute = minute;
+	}
+
+	// Getter function for hour
+	public int getHour() {
+		return hour;
+	}
+
+	// Setter function for hour with exception handled if hour range is invalid
+	public void setHour(int hour) throws InvalidDateException {
+		if(hour < 0 || hour > 23) throw new InvalidDateException("Invalid hour");
+		this.hour = hour;
+	}
+
+	// Main function
+	public static void main(String[] args) throws InvalidDateException {
+		Time t = new Time(2,5,9);
+		System.out.println(t.toString());
+		t.nextSecond();
+	}
+}
+
+//  User made Invalid time Exception 
+class InvalidTimeException extends Exception{
+	public InvalidTimeException(String message) {
+		super(message);
+	}
+}

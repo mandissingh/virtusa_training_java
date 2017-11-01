@@ -1,0 +1,23 @@
+
+public class UserDefinedException {
+
+	
+	public static void main(String[] args) {
+		int a = 10;
+		try{
+			if(a > 9) throw new AddException("Add Exception");
+		}
+		
+		catch(AddException e){
+			System.out.print(e.getMessage());
+		}
+
+	}
+
+}
+
+class AddException extends Throwable{
+	public AddException(String message){
+		super(message);
+	}
+}
